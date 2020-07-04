@@ -18,6 +18,14 @@ class FactsViewController: UIViewController {
         return viewModel
     }()
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:
+                     #selector(FactsViewController.handleRefresh(_:)),
+                                 for: UIControl.Event.valueChanged)
+        return refreshControl
+    }()
+    
     override func loadView() {
         super.loadView()
         safeArea = view.layoutMarginsGuide
@@ -34,6 +42,9 @@ class FactsViewController: UIViewController {
         self.dataSource.data.addAndNotify(observer: self) { [weak self] _ in
             self?.tableView.reloadData()
             self?.title = self?.dataSource.data.title
+            if self?.refreshControl.isRefreshing ?? false{
+                self?.refreshControl.endRefreshing()
+            }
         }
         
         //Error Handling
@@ -68,9 +79,20 @@ class FactsViewController: UIViewController {
         
        //To Avoid Extra Cells
        tableView.tableFooterView = UIView()
-
+        
+       //Add PullToRefresh
+       tableView.addSubview(self.refreshControl)
 
     }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.title = "Refreshing Facts..."
+        
+        //Adding delay intentionally so that PullToReresh can be checked otherwise it's too fast that one is unable to guess what's happening
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.viewModel.fetchFacts()
+        }
 
+    }
 }
 
