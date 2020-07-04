@@ -10,7 +10,6 @@ import UIKit
 class FactsViewController: UIViewController {
     let tableView = UITableView()
     var safeArea: UILayoutGuide!
-    let cellID = "cellIdentifier"
     
     let dataSource = FactsDataSource()
     
@@ -61,7 +60,7 @@ class FactsViewController: UIViewController {
        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     
        //Register TableViewCell
-       tableView.register(FactsTableViewCell.self, forCellReuseIdentifier: cellID)
+       tableView.register(FactsTableViewCell.self, forCellReuseIdentifier: FactsTableViewCell.cellId)
         
        //TableViewCell Dynamic Height
        tableView.estimatedRowHeight = 120.0

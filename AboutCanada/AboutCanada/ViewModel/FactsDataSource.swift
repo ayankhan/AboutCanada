@@ -20,13 +20,13 @@ class FactsDataSource: GenericDataSource<Fact,String>, UITableViewDataSource {
     }
         
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier", for: indexPath) as! FactsTableViewCell
+        let  cell = FactsTableViewCell(style: .default,
+                                 reuseIdentifier: FactsTableViewCell.cellId)
         
         let fact = data.value[indexPath.row]
-        cell.factTitleLabel.text = (fact.factTitle != nil) ? fact.factTitle : "Title Not Available"
-        cell.factDescriptionLabel.text = (fact.factDescription != nil) ? fact.factDescription : "Description Not Available"
 
+        cell.populateCell(data:fact)
+        
         return cell
     }
     

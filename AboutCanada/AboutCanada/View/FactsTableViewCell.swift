@@ -10,6 +10,8 @@ import UIKit
 
 class FactsTableViewCell: UITableViewCell {
     
+    public static let cellId = "cellIdentifier"
+    
     let factImageView:UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFill // image will never be strecthed vertially or horizontally
@@ -35,6 +37,11 @@ class FactsTableViewCell: UITableViewCell {
         return label
     }()
     
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization style
+        self.setupCellView()
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,7 +53,6 @@ class FactsTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
     
     private func setupCellView(){
         
@@ -73,6 +79,15 @@ class FactsTableViewCell: UITableViewCell {
         factDescriptionLabel.trailingAnchor.constraint(equalTo:self.factTitleLabel.trailingAnchor).isActive = true
         factDescriptionLabel.bottomAnchor.constraint(equalTo:self.contentView.bottomAnchor,constant: -10).isActive = true
 
+
+    }
+    
+    public func populateCell(data: Fact){
+        self.factTitleLabel.text = (data.factTitle != nil) ? data.factTitle : "Title Not Available"
+        self.factDescriptionLabel.text = (data.factDescription != nil) ? data.factDescription : "Description Not Available"
+        if let factImageUrl = data.factImage {
+            self.factImageView.setImageFromUrl(urlSting: factImageUrl)
+        }
 
     }
     
