@@ -12,6 +12,13 @@ class FactsViewController: UIViewController {
     var safeArea: UILayoutGuide!
     let cellID = "cellIdentifier"
     
+    let dataSource = FactsDataSource()
+    
+    lazy var viewModel : FactsViewModel = {
+        let viewModel = FactsViewModel(dataSource: dataSource)
+        return viewModel
+    }()
+    
     override func loadView() {
         super.loadView()
         safeArea = view.layoutMarginsGuide
@@ -21,6 +28,26 @@ class FactsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.title = "Fetching Facts..."
+
+        //Observe Service Response
+        self.tableView.dataSource = self.dataSource
+        self.dataSource.data.addAndNotify(observer: self) { [weak self] _ in
+            self?.tableView.reloadData()
+            self?.title = self?.dataSource.data.title
+        }
+        
+        //Error Handling
+        self.viewModel.onErrorHandling = { [weak self] error in
+            // display error ?
+            let controller = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+            self?.present(controller, animated: true, completion: nil)
+        }
+        
+        //Call Fetch Facts Webservice
+        self.viewModel.fetchFacts()
+
     }
 
     private func setupTableView() {
@@ -37,8 +64,11 @@ class FactsViewController: UIViewController {
        tableView.register(FactsTableViewCell.self, forCellReuseIdentifier: cellID)
         
        //TableViewCell Dynamic Height
-       tableView.estimatedRowHeight = 80.0
+       tableView.estimatedRowHeight = 120.0
        tableView.rowHeight = UITableView.automaticDimension
+        
+       //To Avoid Extra Cells
+       tableView.tableFooterView = UIView()
 
 
     }

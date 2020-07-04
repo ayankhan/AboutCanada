@@ -22,6 +22,12 @@
 		852577DF24AFD95A007D7AD5 /* FactsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577DE24AFD95A007D7AD5 /* FactsDataSource.swift */; };
 		852577E224AFDA6F007D7AD5 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577E124AFDA6F007D7AD5 /* Reachability.swift */; };
 		852577E424AFDADF007D7AD5 /* FactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577E324AFDADF007D7AD5 /* FactsTableViewCell.swift */; };
+		852577E724B0A426007D7AD5 /* FactsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577E624B0A426007D7AD5 /* FactsService.swift */; };
+		852577F224B0A4F6007D7AD5 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577EB24B0A4F6007D7AD5 /* RequestService.swift */; };
+		852577F324B0A4F6007D7AD5 /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577EC24B0A4F6007D7AD5 /* RequestHandler.swift */; };
+		852577F424B0A4F6007D7AD5 /* RequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577ED24B0A4F6007D7AD5 /* RequestFactory.swift */; };
+		852577F524B0A4F6007D7AD5 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577EF24B0A4F6007D7AD5 /* Result.swift */; };
+		852577F624B0A4F6007D7AD5 /* ErrorResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852577F024B0A4F6007D7AD5 /* ErrorResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +69,12 @@
 		852577DE24AFD95A007D7AD5 /* FactsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsDataSource.swift; sourceTree = "<group>"; };
 		852577E124AFDA6F007D7AD5 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		852577E324AFDADF007D7AD5 /* FactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsTableViewCell.swift; sourceTree = "<group>"; };
+		852577E624B0A426007D7AD5 /* FactsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactsService.swift; sourceTree = "<group>"; };
+		852577EB24B0A4F6007D7AD5 /* RequestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		852577EC24B0A4F6007D7AD5 /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
+		852577ED24B0A4F6007D7AD5 /* RequestFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestFactory.swift; sourceTree = "<group>"; };
+		852577EF24B0A4F6007D7AD5 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		852577F024B0A4F6007D7AD5 /* ErrorResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +125,7 @@
 		852577A024AF7504007D7AD5 /* AboutCanada */ = {
 			isa = PBXGroup;
 			children = (
+				852577E524B0A406007D7AD5 /* Service */,
 				852577E024AFDA6F007D7AD5 /* Resources */,
 				852577D224AFD08F007D7AD5 /* Model */,
 				852577D324AFD0AC007D7AD5 /* ViewModel */,
@@ -179,6 +192,35 @@
 				852577E124AFDA6F007D7AD5 /* Reachability.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		852577E524B0A406007D7AD5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				852577EA24B0A4F6007D7AD5 /* Network */,
+				852577EE24B0A4F6007D7AD5 /* Result */,
+				852577E624B0A426007D7AD5 /* FactsService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		852577EA24B0A4F6007D7AD5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				852577EB24B0A4F6007D7AD5 /* RequestService.swift */,
+				852577EC24B0A4F6007D7AD5 /* RequestHandler.swift */,
+				852577ED24B0A4F6007D7AD5 /* RequestFactory.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		852577EE24B0A4F6007D7AD5 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				852577EF24B0A4F6007D7AD5 /* Result.swift */,
+				852577F024B0A4F6007D7AD5 /* ErrorResult.swift */,
+			);
+			path = Result;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,14 +354,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				852577F324B0A4F6007D7AD5 /* RequestHandler.swift in Sources */,
 				852577DB24AFD657007D7AD5 /* FactsViewModel.swift in Sources */,
 				852577A624AF7504007D7AD5 /* FactsViewController.swift in Sources */,
+				852577E724B0A426007D7AD5 /* FactsService.swift in Sources */,
 				852577D524AFD23A007D7AD5 /* About.swift in Sources */,
+				852577F524B0A4F6007D7AD5 /* Result.swift in Sources */,
+				852577F424B0A4F6007D7AD5 /* RequestFactory.swift in Sources */,
 				852577D924AFD500007D7AD5 /* Fact.swift in Sources */,
 				852577DF24AFD95A007D7AD5 /* FactsDataSource.swift in Sources */,
 				852577E224AFDA6F007D7AD5 /* Reachability.swift in Sources */,
+				852577F624B0A4F6007D7AD5 /* ErrorResult.swift in Sources */,
 				852577A224AF7504007D7AD5 /* AppDelegate.swift in Sources */,
 				852577A424AF7504007D7AD5 /* SceneDelegate.swift in Sources */,
+				852577F224B0A4F6007D7AD5 /* RequestService.swift in Sources */,
 				852577DD24AFD7FF007D7AD5 /* DynamicValue.swift in Sources */,
 				852577E424AFDADF007D7AD5 /* FactsTableViewCell.swift in Sources */,
 			);

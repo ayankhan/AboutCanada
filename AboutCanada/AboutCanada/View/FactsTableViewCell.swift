@@ -9,20 +9,13 @@
 import UIKit
 
 class FactsTableViewCell: UITableViewCell {
-
-    let containerView:UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true // this will make sure its children do not go out of the boundary
-        return view
-    }()
     
     let factImageView:UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFill // image will never be strecthed vertially or horizontally
         img.backgroundColor = UIColor.lightGray
         img.translatesAutoresizingMaskIntoConstraints = false // enable autolayout
-        img.layer.cornerRadius = 50
+        img.layer.cornerRadius = 40
         img.clipsToBounds = true
         return img
     }()
@@ -36,7 +29,7 @@ class FactsTableViewCell: UITableViewCell {
     
     let factDescriptionLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -51,42 +44,35 @@ class FactsTableViewCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        
         super.init(coder: aDecoder)
     }
 
     
     private func setupCellView(){
         
-        //Add ImageView to contentView and labels to ContainerView
+        //Add ImageView and labels to contentView
         self.contentView.addSubview(factImageView)
-        containerView.addSubview(factTitleLabel)
-        containerView.addSubview(factDescriptionLabel)
-        self.contentView.addSubview(containerView)
+        self.contentView.addSubview(factTitleLabel)
+        self.contentView.addSubview(factDescriptionLabel)
 
         //FactImageView Constraints
         factImageView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
         factImageView.leadingAnchor.constraint(equalTo:self.contentView.leadingAnchor, constant:10).isActive = true
-        factImageView.widthAnchor.constraint(equalToConstant:100).isActive = true
-        factImageView.heightAnchor.constraint(equalToConstant:100).isActive = true
+        factImageView.widthAnchor.constraint(equalToConstant:80).isActive = true
+        factImageView.heightAnchor.constraint(equalToConstant:80).isActive = true
+        factImageView.bottomAnchor.constraint(lessThanOrEqualTo:self.contentView.bottomAnchor, constant:-10).isActive = true
 
-        //ContainerView Constraints
-        containerView.centerYAnchor.constraint(equalTo:self.contentView.centerYAnchor).isActive = true
-        containerView.leadingAnchor.constraint(equalTo:self.factImageView.trailingAnchor, constant:10).isActive = true
-        containerView.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:10).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant:40).isActive = true
-        
         //FactTitleLabel Constraints
-        factTitleLabel.topAnchor.constraint(equalTo:self.containerView.topAnchor).isActive = true
-        factTitleLabel.leadingAnchor.constraint(equalTo:self.containerView.leadingAnchor).isActive = true
-        factTitleLabel.trailingAnchor.constraint(equalTo:self.containerView.trailingAnchor).isActive = true
+        factTitleLabel.topAnchor.constraint(equalTo:self.contentView.topAnchor,constant: 10).isActive = true
+        factTitleLabel.leadingAnchor.constraint(equalTo:self.factImageView.trailingAnchor,constant: 10).isActive = true
+        factTitleLabel.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor,constant: -10).isActive = true
         
         //FactDescriptionLabel Constraints
-        factDescriptionLabel.topAnchor.constraint(equalTo:self.factTitleLabel.bottomAnchor).isActive = true
-        factDescriptionLabel.leadingAnchor.constraint(equalTo:self.containerView.leadingAnchor).isActive = true
-        factDescriptionLabel.topAnchor.constraint(equalTo:self.factTitleLabel.bottomAnchor).isActive = true
-        factDescriptionLabel.leadingAnchor.constraint(equalTo:self.containerView.leadingAnchor).isActive = true
-        factDescriptionLabel.trailingAnchor.constraint(equalTo:self.contentView.trailingAnchor, constant:0).isActive = true
+        factDescriptionLabel.topAnchor.constraint(equalTo:self.factTitleLabel.bottomAnchor,constant: 4).isActive = true
+        factDescriptionLabel.leadingAnchor.constraint(equalTo:self.factTitleLabel.leadingAnchor).isActive = true
+        factDescriptionLabel.trailingAnchor.constraint(equalTo:self.factTitleLabel.trailingAnchor).isActive = true
+        factDescriptionLabel.bottomAnchor.constraint(equalTo:self.contentView.bottomAnchor,constant: -10).isActive = true
+
 
     }
     
