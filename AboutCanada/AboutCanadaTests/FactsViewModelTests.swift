@@ -9,7 +9,7 @@
 import XCTest
 @testable import AboutCanada
 
-class AboutCanadaViewModelTests: XCTestCase {
+class FactsViewModelTests: XCTestCase {
     
     var viewModel : FactsViewModel!
     var dataSource : GenericDataSource<Fact,String>!

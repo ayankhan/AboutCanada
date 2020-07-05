@@ -7,26 +7,70 @@
 //
 
 import XCTest
+@testable import AboutCanada
 
 class FactsDatasourceTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var dataSource : FactsDataSource!
+    
+    override func setUp() {
+        super.setUp()
+        dataSource = FactsDataSource()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        dataSource = nil
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testEmptyValueInDataSource() {
+        
+        // giving empty data value
+        dataSource.data.value = []
+        
+        let tableView = UITableView()
+        tableView.dataSource = dataSource
+        
+        // expected one section
+        XCTAssertEqual(dataSource.numberOfSections(in: tableView), 1, "Expected one section in table view")
+        
+        // expected zero cells
+        XCTAssertEqual(dataSource.tableView(tableView, numberOfRowsInSection: 0), 0, "Expected no cell in table view")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testValueInDataSource() {
+        
+        // Providing data value
+        let flag = Fact.init(factTitle: "Flag", factDescription: "Test Description", factImage: "")
+        let beavers = Fact.init(factTitle: "Beavers", factDescription: "Test Description", factImage: "")
+        dataSource.data.value = [flag, beavers]
+        
+        let tableView = UITableView()
+        tableView.dataSource = dataSource
+        
+        // expected one section
+        XCTAssertEqual(dataSource.numberOfSections(in: tableView), 1, "Expected one section in table view")
+        
+        // expected two cells
+        XCTAssertEqual(dataSource.tableView(tableView, numberOfRowsInSection: 0), 2, "Expected two cell in table view")
+    }
+    
+    func testValueCell() {
+        
+        // giving data value
+        let flag = Fact.init(factTitle: "Flag", factDescription: "Test Description", factImage: "")
+        dataSource.data.value = [flag]
+        
+        let tableView = UITableView()
+        tableView.dataSource = dataSource
+        tableView.register(FactsTableViewCell.self, forCellReuseIdentifier: FactsTableViewCell.cellId)
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        
+        // expected FactsTableViewCell class
+        guard let _ = dataSource.tableView(tableView, cellForRowAt: indexPath) as? FactsTableViewCell else {
+            XCTAssert(false, "Expected CurrencyCell class")
+            return
         }
     }
 
