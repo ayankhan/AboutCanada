@@ -8,12 +8,12 @@
 
 import UIKit
 class FactsViewController: UIViewController {
-    let tableView = UITableView()
-    var safeArea: UILayoutGuide!
+    private let tableView = UITableView()
+    private var safeArea: UILayoutGuide!
     
-    let dataSource = FactsDataSource()
+    private let dataSource = FactsDataSource()
     
-    lazy var viewModel : FactsViewModel = {
+    private lazy var viewModel : FactsViewModel = {
         let viewModel = FactsViewModel(dataSource: dataSource)
         return viewModel
     }()
