@@ -19,7 +19,7 @@ class FactsServiceTests: XCTestCase {
         }
         
         // Expected to task nil after cancel
-        FactsService.shared.cancelFetchCurrencies()
+        FactsService.shared.cancelFetchFacts()
         XCTAssertNil(FactsService.shared.task, "Expected task nil")
     }
 
