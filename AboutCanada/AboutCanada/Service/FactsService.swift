@@ -22,12 +22,12 @@ final class FactsService : RequestHandler, FactsServiceProtocol {
     func fetchFacts(_ completion: @escaping ((Result<About, ErrorResult>) -> Void)) {
         
         // Cancel previous request if already in progress
-        self.cancelFetchCurrencies()
+        self.cancelFetchFacts()
         
         task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
     }
     
-    func cancelFetchCurrencies() {
+    func cancelFetchFacts() {
         
         if let task = task {
             task.cancel()
