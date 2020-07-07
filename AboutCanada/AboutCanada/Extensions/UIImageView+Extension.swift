@@ -66,7 +66,9 @@ extension UIImageView{
                 imageCache.setObject(imageToCache, forKey: urlSting as AnyObject)
                 self.image = UIImage(data: data)
             case .failure(_):
-                self.backgroundColor = UIColor.lightGray
+                DispatchQueue.main.async() {
+                   self.backgroundColor = UIColor.lightGray
+                }
             }
             
         }
