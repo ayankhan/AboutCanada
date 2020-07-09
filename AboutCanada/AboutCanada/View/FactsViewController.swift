@@ -49,6 +49,11 @@ class FactsViewController: UIViewController {
         
         //Error Handling
         self.viewModel.onErrorHandling = { [weak self] error in
+            if self?.refreshControl.isRefreshing ?? false{
+                self?.refreshControl.endRefreshing()
+                self?.title = ""
+            }
+
             // display error ?
             let controller = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
             controller.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))

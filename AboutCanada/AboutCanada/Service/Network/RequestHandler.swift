@@ -22,12 +22,12 @@ class RequestHandler {
                             let result = try JSONDecoder().decode(About.self, from: data)
                             completion(.success(result))
                         } catch {
-                            completion(.failure(.parser(string: "Parsing error " + error.localizedDescription)))
+                            completion(.failure(.parser(string: "Parsing Error: " + error.localizedDescription)))
                         }
                         break
                     case .failure(let error) :
                         print("Network error \(error)")
-                        completion(.failure(.network(string: "Network error " + error.localizedDescription)))
+                        completion(.failure(.network(string: "Network Error: " + error.localizedDescription)))
                         break
                     }
                 })

@@ -83,9 +83,9 @@ class FactsTableViewCell: UITableViewCell {
     }
     
     public func populateCell(data: Fact){
-        self.factTitleLabel.text = (data.factTitle != nil) ? data.factTitle : "Title Not Available"
-        self.factDescriptionLabel.text = (data.factDescription != nil) ? data.factDescription : "Description Not Available"
-        if let factImageUrl = data.factImage {
+        self.factTitleLabel.text = (data.title != nil) ? data.title : "Title Not Available"
+        self.factDescriptionLabel.text = (data.description != nil) ? data.description : "Description Not Available"
+        if let factImageUrl = data.imageHref {
             self.factImageView.setImageFromUrl(urlSting: factImageUrl)
         }
 

@@ -13,3 +13,15 @@ enum ErrorResult: Error {
     case parser(string: String)
     case custom(string: String)
 }
+extension ErrorResult: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+        case .network(let message):
+            return NSLocalizedString(message, comment: "Network Error")
+        case .parser(let message):
+            return NSLocalizedString(message, comment: "Parsing Error")
+        case .custom(let message):
+            return NSLocalizedString(message, comment: "Error")
+        }
+    }
+}

@@ -41,8 +41,8 @@ class FactsDatasourceTests: XCTestCase {
     func testValueInDataSource() {
         
         // Providing data value
-        let flag = Fact.init(factTitle: "Flag", factDescription: "Test Description", factImage: "")
-        let beavers = Fact.init(factTitle: "Beavers", factDescription: "Test Description", factImage: "")
+        let flag = Fact.init(title: "Flag", description: "Test Description", imageHref: "")
+        let beavers = Fact.init(title: "Beavers", description: "Test Description", imageHref: "")
         dataSource.data.value = [flag, beavers]
         
         let tableView = UITableView()
@@ -58,7 +58,7 @@ class FactsDatasourceTests: XCTestCase {
     func testValueCell() {
         
         // giving data value
-        let flag = Fact.init(factTitle: "Flag", factDescription: "Test Description", factImage: "")
+        let flag = Fact.init(title: "Flag", description: "Test Description", imageHref: "")
         dataSource.data.value = [flag]
         
         let tableView = UITableView()

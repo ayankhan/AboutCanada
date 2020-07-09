@@ -9,13 +9,8 @@
 import Foundation
 
 struct Fact: Codable {
-    var factTitle : String?
-    var factDescription : String?
-    var factImage : String?
+    var title : String?
+    var description : String?
+    var imageHref : String?
     
-    enum CodingKeys: String, CodingKey {
-        case factTitle = "title"
-        case factDescription = "description"
-        case factImage = "imageHref"
-    }
 }
